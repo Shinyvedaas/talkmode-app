@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TalkMode — a real assistant on your Mac</title>
+<meta name="description" content="TalkMode turns a Mac mini or any Apple-silicon Mac into a real-time Korean voice assistant. Sub-second turn-taking, on-device, your terms." />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content="TalkMode — a real assistant on your Mac" />
+<meta property="og:description" content="Real-time Korean voice assistant for macOS. Multimodal endpointing, on-device, privacy by default." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://talkmode.baryon.ai/" />
+<meta name="twitter:card" content="summary_large_image" />
+<style>
+  :root {
+    --teal: #3ebbae;
+    --blue: #286bc6;
+    --ink: #18202f;
+    --muted: #5b6577;
+    --line: #e6eaf0;
+    --soft: #f6f8fb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background: #fff;
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 80px 0; }
+  h2 {
+    font-size: 30px; letter-spacing: -0.02em; text-align: center; margin-bottom: 12px;
+  }
+  .sub { text-align: center; color: var(--muted); margin-bottom: 44px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; gap: 16px; padding: 14px 24px; max-width: 1040px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; }
+  .brand img { width: 30px; height: 30px; }
+  .nav .spacer { flex: 1; }
+  .nav a { color: var(--ink); font-size: 14px; font-weight: 500; }
+  .nav a.ghost { color: var(--muted); }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    background: radial-gradient(900px 420px at 50% -120px, #e8f6f4 0%, #ffffff 70%);
+    padding: 92px 0 72px;
+  }
+  .hero .logo { width: 96px; height: 96px; margin: 0 auto 24px; display: block; filter: drop-shadow(0 12px 28px rgba(40,107,198,0.28)); }
+  .hero h1 { font-size: 52px; letter-spacing: -0.03em; line-height: 1.1; }
+  .hero .tag {
+    font-size: 20px; color: var(--muted); margin-top: 16px; max-width: 620px;
+    margin-left: auto; margin-right: auto;
+  }
+  .hero .tag b { color: var(--ink); font-weight: 600; }
+  .cta { margin-top: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 24px; border-radius: 11px; font-weight: 600; font-size: 15px;
+  }
+  .btn-primary {
+    background: linear-gradient(180deg, var(--teal), var(--blue)); color: #fff;
+    box-shadow: 0 8px 20px rgba(40,107,198,0.30);
+  }
+  .btn-primary:hover { text-decoration: none; opacity: 0.93; }
+  .btn-ghost { background: var(--soft); color: var(--ink); border: 1px solid var(--line); }
+  .btn-ghost:hover { text-decoration: none; background: #eef1f6; }
+  .badges { margin-top: 28px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .badges img { height: 20px; }
+
+  /* Features */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card {
+    border: 1px solid var(--line); border-radius: 14px; padding: 22px;
+    background: #fff;
+  }
+  .card h3 { font-size: 16px; margin-bottom: 6px; }
+  .card p { font-size: 14px; color: var(--muted); }
+  .card .ic {
+    width: 38px; height: 38px; border-radius: 9px; margin-bottom: 14px;
+    background: linear-gradient(180deg, var(--teal), var(--blue));
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 19px;
+  }
+
+  /* Shots */
+  .shots { background: var(--soft); }
+  .shotgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .shotgrid figure {
+    border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff;
+  }
+  .shotgrid img { width: 100%; display: block; }
+  .shotgrid figcaption { font-size: 13px; color: var(--muted); padding: 12px 16px; }
+
+  /* Install */
+  .install-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .panel { border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+  .panel h3 { font-size: 17px; margin-bottom: 12px; }
+  pre {
+    background: #141a26; color: #e8edf5; border-radius: 10px;
+    padding: 16px 18px; font-size: 13.5px; overflow-x: auto;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+  }
+  pre .c { color: #6f7c91; }
+  .panel p { font-size: 14px; color: var(--muted); margin-top: 12px; }
+  .panel.gk { margin-top: 20px; }
+  .panel.gk b { color: var(--ink); }
+  .req { margin-top: 32px; text-align: center; font-size: 14px; color: var(--muted); }
+
+  /* Languages */
+  .langs { background: var(--soft); }
+  .langlist {
+    max-width: 780px; margin: 0 auto;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 9px;
+  }
+  .langlist a {
+    white-space: nowrap; color: var(--ink); font-size: 14px; font-weight: 500;
+    text-decoration: none; padding: 6px 14px; border-radius: 999px;
+    background: #fff; border: 1px solid var(--line);
+    transition: color 0.12s, border-color 0.12s;
+  }
+  .langlist a:hover { color: var(--blue); border-color: var(--blue); text-decoration: none; }
+  .langlist .dot { display: none; }
+  .langnote { text-align: center; color: var(--muted); font-size: 13px; margin-top: 26px; }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--line); padding: 48px 0; }
+  .foot { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: center; }
+  .foot a { color: var(--muted); font-size: 14px; }
+  .foot .made { width: 100%; text-align: center; color: var(--muted); font-size: 13px; margin-top: 18px; }
+
+  @media (max-width: 760px) {
+    .hero h1 { font-size: 38px; }
+    .hero .tag { font-size: 17px; }
+    .grid { grid-template-columns: 1fr; }
+    .shotgrid, .install-cols { grid-template-columns: 1fr; }
+    .nav a:not(.ghost) { display: none; }
+    section { padding: 56px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <span class="brand"><img src="/favicon.svg" alt="" />TalkMode</span>
+    <span class="spacer"></span>
+    <a href="#features">Features</a>
+    <a href="#screenshots">Screenshots</a>
+    <a href="#install">Install</a>
+    <a class="ghost" href="/readme.html">Docs</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <img class="logo" src="/favicon.svg" alt="TalkMode icon" />
+    <h1>TalkMode</h1>
+    <p class="tag">
+      <b>Mac mini turned into a real assistant.</b><br />
+      Instant Korean voice, on-device, your terms.
+    </p>
+    <div class="cta">
+      <a class="btn btn-primary" href="/download/TalkMode-0.4.2.zip">Download for macOS</a>
+      <a class="btn btn-ghost" href="/readme.html">Read the docs</a>
+    </div>
+    <div class="badges">
+      <img src="https://img.shields.io/badge/macOS-Sonoma%2B-blue" alt="macOS Sonoma+" />
+      <img src="https://img.shields.io/badge/Apple%20silicon-arm64-success" alt="Apple silicon" />
+      <img src="https://img.shields.io/badge/version-0.4.2-4c71f2" alt="Version 0.4.2" />
+    </div>
+  </div>
+</section>
+
+<section class="langs">
+  <div class="wrap">
+    <h2>Available in 20 languages</h2>
+    <p class="sub">TalkMode's interface is fully translated in all 20 languages — no English fallback. Pick yours below to read the project in your language.</p>
+    <div class="langlist">
+      <a href="/readme.html?lang=ko">한국어</a><span class="dot">·</span><a href="/readme.html?lang=en">English</a><span class="dot">·</span><a href="/readme.html?lang=ja">日本語</a><span class="dot">·</span><a href="/readme.html?lang=zh-CN">简体中文</a><span class="dot">·</span><a href="/readme.html?lang=zh-TW">繁體中文</a><span class="dot">·</span><a href="/readme.html?lang=es">Español</a><span class="dot">·</span><a href="/readme.html?lang=fr">Français</a><span class="dot">·</span><a href="/readme.html?lang=de">Deutsch</a><span class="dot">·</span><a href="/readme.html?lang=it">Italiano</a><span class="dot">·</span><a href="/readme.html?lang=pt">Português</a><span class="dot">·</span><a href="/readme.html?lang=ru">Русский</a><span class="dot">·</span><a href="/readme.html?lang=ar">العربية</a><span class="dot">·</span><a href="/readme.html?lang=hi">हिन्दी</a><span class="dot">·</span><a href="/readme.html?lang=id">Bahasa Indonesia</a><span class="dot">·</span><a href="/readme.html?lang=vi">Tiếng Việt</a><span class="dot">·</span><a href="/readme.html?lang=th">ภาษาไทย</a><span class="dot">·</span><a href="/readme.html?lang=tr">Türkçe</a><span class="dot">·</span><a href="/readme.html?lang=nl">Nederlands</a><span class="dot">·</span><a href="/readme.html?lang=pl">Polski</a><span class="dot">·</span><a href="/readme.html?lang=sv">Svenska</a>
+    </div>
+    <p class="langnote">Plus 50+ on-device speech-recognition locales — talk to the assistant in one language while reading the UI in another.</p>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <h2>A coworker, not a chatbot</h2>
+    <p class="sub">TalkMode behaves like someone you talk to — fast, attentive, and private.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ic">&#9889;</div>
+        <h3>Sub-second turn-taking</h3>
+        <p>A Korean-tuned adaptive endpointer reads gaze, voice, and transcript at once — your turn ends fast, but not too fast.</p>
+      </div>
+      <div class="card">
+        <div class="ic">&#128064;</div>
+        <h3>Multimodal cues</h3>
+        <p>Talk to interrupt, or look away to wrap up. The front camera estimates eye contact entirely on-device.</p>
+      </div>
+      <div class="card">
+        <div class="ic">&#127908;</div>
+        <h3>4 conversation modes</h3>
+        <p>Conversation, meeting minutes, brainstorming, and counseling — each with its own pacing and persona.</p>
+      </div>
+      <div class="card">
+        <div class="ic">&#129504;</div>
+        <h3>Skills</h3>
+        <p>Read your calendar, draft mail, check recent messages, query CPU/RAM, and save long-term memory by voice.</p>
+      </div>
+      <div class="card">
+        <div class="ic">&#127760;</div>
+        <h3>20 UI languages</h3>
+        <p>Fully localized interface in 20 languages, plus 50+ on-device speech-recognition locales.</p>
+      </div>
+      <div class="card">
+        <div class="ic">&#128274;</div>
+        <h3>Privacy by default</h3>
+        <p>Nothing leaves your Mac except your chosen LLM provider and anonymized diagnostics with all text stripped.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="screenshots" class="shots">
+  <div class="wrap">
+    <h2>See it in motion</h2>
+    <p class="sub">Conversation, persona setup, and a live diagnostics timeline.</p>
+    <div class="shotgrid">
+      <figure>
+        <img src="/screenshots/conversation-main.png" alt="Conversation tab" />
+        <figcaption><b>Conversation</b> — assistant avatar, optional gaze camera, mic-level overlay, live chat.</figcaption>
+      </figure>
+      <figure>
+        <img src="/screenshots/conversation-chat.png" alt="Live conversation" />
+        <figcaption><b>Live chat</b> — markdown bubbles, auto-punctuated STT, staged-skill badges.</figcaption>
+      </figure>
+      <figure>
+        <img src="/screenshots/settings-persona.png" alt="Settings — Persona" />
+        <figcaption><b>Persona</b> — language, avatar, and the live <code>soul.md</code> contract.</figcaption>
+      </figure>
+      <figure>
+        <img src="/screenshots/diagnostics-timeline.png" alt="Diagnostics timeline" />
+        <figcaption><b>Diagnostics</b> — phase, gaze, STT/CPU readouts, endpointing timeline.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <h2>Install in seconds</h2>
+    <p class="sub">macOS Sonoma or later, Apple silicon.</p>
+    <div class="install-cols">
+      <div class="panel">
+        <h3>Homebrew</h3>
+        <pre><span class="c"># tap and install</span>
+brew tap baryonlabs/talkmode
+brew install --cask talkmode</pre>
+        <p>Already installed? <code>brew upgrade --cask talkmode</code>.</p>
+      </div>
+      <div class="panel">
+        <h3>Direct download</h3>
+        <pre><span class="c"># signed .app bundle (v0.4.2)</span>
+curl -LO https://talkmode.baryon.ai\
+/download/TalkMode-0.4.2.zip</pre>
+        <p>Or use the <a href="/download/TalkMode-0.4.2.zip">Download for macOS</a> button. Unzip, drag into <code>Applications</code>, right-click &rarr; Open on first launch.</p>
+      </div>
+    </div>
+    <div class="panel gk">
+      <h3>If macOS says &ldquo;TalkMode is blocked&rdquo;</h3>
+      <p>The app is ad-hoc signed (not yet notarized), so Gatekeeper blocks the first launch. Paste these 4 lines into Terminal:</p>
+      <pre><span class="c"># 1) launch once so macOS registers the app</span>
+open '/Applications/TalkMode.app'
+<span class="c"># 2) jump straight to Privacy &amp; Security settings</span>
+open 'x-apple.systempreferences:com.apple.settings.PrivacySecurity.extension'</pre>
+      <p>Then in <b>Privacy &amp; Security</b>, scroll to the bottom and click <b>Open Anyway</b> (&ldquo;그래도 열기&rdquo;), then <b>Open</b> in the confirmation dialog. macOS remembers the choice — later launches open normally.</p>
+    </div>
+    <p class="req">Requires an LLM provider — the Claude CLI, Codex CLI, or an OpenAI key. Sparkle keeps the app updated automatically.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a href="/readme.html">Documentation</a>
+      <a href="/download/TalkMode-0.4.2.zip">Download</a>
+      <a href="https://github.com/baryonlabs/talkmode-app/discussions">Discussions</a>
+      <a href="https://github.com/baryonlabs/talkmode-app/issues">Issues</a>
+      <a href="https://www.gnu.org/licenses/agpl-3.0.html">License (AGPL-3.0)</a>
+      <a href="mailto:support@baryon.ai">support@baryon.ai</a>
+      <span class="made">Made in Seoul by <a href="https://baryon.ai">Baryon Labs</a>. TalkMode is free software under the GNU AGPL-3.0.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

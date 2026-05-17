@@ -1,0 +1,15 @@
+# Cloudflare Pages config for the TalkMode landing page (talkmode.baryon.ai).
+#
+# Deploy (run from this web/ directory):
+#   wrangler pages deploy
+#
+# First-time setup:
+#   1. wrangler login
+#   2. wrangler pages deploy        # creates the "talkmode" Pages project
+#   3. In the Cloudflare dashboard → Workers & Pages → talkmode → Custom domains,
+#      add  talkmode.baryon.ai  (the baryon.ai zone must be on this Cloudflare
+#      account; the CNAME is created automatically).
+
+name = "talkmode"
+compatibility_date = "2026-05-16"
+pages_build_output_dir = "."
