@@ -4,6 +4,13 @@ All notable changes to **TalkMode**. Newest release first. Versions follow
 `MAJOR.MINOR.PATCH`; the app auto-updates via Sparkle from
 [appcast.xml](https://talkmode.baryon.ai/appcast.xml).
 
+## 0.4.9 — 2026-05-17
+
+### Fixed
+- The gaze camera now reliably turns on whenever you start speaking. The
+  resume was gated on the conversation phase and could be silently
+  skipped.
+
 ## 0.4.8 — 2026-05-17
 
 ### Added
