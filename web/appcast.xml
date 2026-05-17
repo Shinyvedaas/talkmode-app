@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <title>TalkMode</title>
+    <link>https://talkmode.baryon.ai/appcast.xml</link>
+    <description>TalkMode app updates</description>
+    <language>en</language>
+    <item>
+      <title>0.4.5</title>
+      <pubDate>일, 17  5월 2026 19:15:22 +0900</pubDate>
+      <sparkle:version>9</sparkle:version>
+      <sparkle:shortVersionString>0.4.5</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <description><![CDATA[
+        <ul>
+          <li>Pick a specific Apple voice in Settings.</li>
+          <li>Fix camera gaze not resuming after the first utterance.</li>
+          <li>Fix the auto-update feed URL and adaptive Light/Dark colors.</li>
+        </ul>
+      ]]></description>
+      <enclosure url="https://talkmode.baryon.ai/download/TalkMode-0.4.5.zip" sparkle:edSignature="C42gbs0vdppjikmr+Tf+5w7lZEIm1LhQZUpZzLrVv0nINF1WToDu9mUZ//ZF59ueYi2HJzBXdcqBsW5X5CGuBg==" length="2968296" type="application/octet-stream" />
+    </item>
+  </channel>
+</rss>
