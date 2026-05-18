@@ -4,12 +4,6 @@ All notable changes to **TalkMode**. Newest release first. Versions follow
 `MAJOR.MINOR.PATCH`; the app auto-updates via Sparkle from
 [appcast.xml](https://talkmode.baryon.ai/appcast.xml).
 
-## 0.5.0 — 2026-05-17
-
-### Added
-
-- A 404 page is added with a button to redirect the user to the home page.
-
 
 ## 0.4.9 — 2026-05-17
 
